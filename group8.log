@@ -1,0 +1,493 @@
+[1, 17:28:39] Create Table continents(
+continent_code Varchar(5)
+Not Null,
+continent_name
+Varchar(50),
+primary key
+(continent_code)
+): Running...
+[1, 17:28:39] Create Table continents(
+continent_code Varchar(5)
+Not Null,
+continent_name
+Varchar(50),
+primary key
+(continent_code)
+): Error Code: 1046. No database selected
+Select the default DB to be used by double-clicking its name in the SCHEMAS list in the sidebar.
+[1, 17:29:47] Create Table continents(
+continent_code Varchar(5)
+Not Null,
+continent_name
+Varchar(50),
+primary key
+(continent_code)
+): Running...
+[1, 17:29:47] Create Table continents(
+continent_code Varchar(5)
+Not Null,
+continent_name
+Varchar(50),
+primary key
+(continent_code)
+): Error Code: 1046. No database selected
+Select the default DB to be used by double-clicking its name in the SCHEMAS list in the sidebar.
+[2, 17:32:19] CREATE DATABASE testdb: Running...
+[2, 17:32:19] CREATE DATABASE testdb: 1 row(s) affected
+[3, 17:32:31] USE testdb: Running...
+[3, 17:32:31] USE testdb: 0 row(s) affected
+[4, 17:32:36] Create Table continents(
+continent_code Varchar(5)
+Not Null,
+continent_name
+Varchar(50),
+primary key
+(continent_code)
+): Running...
+[4, 17:32:36] Create Table continents(
+continent_code Varchar(5)
+Not Null,
+continent_name
+Varchar(50),
+primary key
+(continent_code)
+): 0 row(s) affected
+[1, 17:35:29] SELECT * FROM testdb.continents
+LIMIT 0, 1000
+: Running...
+[1, 17:35:29] SELECT * FROM testdb.continents
+LIMIT 0, 1000
+: Fetching...
+[1, 17:35:29] SELECT * FROM testdb.continents
+LIMIT 0, 1000
+: 0 row(s) returned
+[1, 12:37:24] SELECT * FROM testdb.continents
+LIMIT 0, 1000
+: Running...
+[1, 12:37:24] SELECT * FROM testdb.continents
+LIMIT 0, 1000
+: Fetching...
+[1, 12:37:24] SELECT * FROM testdb.continents
+LIMIT 0, 1000
+: 0 row(s) returned
+[1, 20:18:21] Apply changes to cs310db: Applying object changes ...
+[1, 20:18:26] Applying changes to cs310db...: 
+[1, 20:18:26] : Changes applied to cs310db
+[1, 20:18:27] Apply changes to cs310db: Changes applied
+[2, 20:21:51] CREATE TABLE Test(
+sid INTEGER,
+name CHAR(50),
+PRIMARY KEY (sid)
+): Running...
+[2, 20:21:51] CREATE TABLE Test(
+sid INTEGER,
+name CHAR(50),
+PRIMARY KEY (sid)
+): 0 row(s) affected
+[3, 20:22:08] DROP TABLE test: Running...
+[3, 20:22:08] DROP TABLE test: 0 row(s) affected
+[4, 20:26:34] CREATE TABLE Country(
+c_id CHAR(3),
+c_name CHAR(50),
+PRIMARY KEY (c_id)
+): Running...
+[4, 20:26:34] CREATE TABLE Country(
+c_id CHAR(3),
+c_name CHAR(50),
+PRIMARY KEY (c_id)
+): 0 row(s) affected
+[5, 20:27:14] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[5, 20:27:14] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[6, 20:27:14] SHOW DATABASES: Executing 
+[6, 20:27:14] SHOW DATABASES: OK
+[7, 20:27:46] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[7, 20:27:46] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[8, 20:27:46] SHOW COLUMNS FROM `cs310db`.`country`: Executing 
+[8, 20:27:46] SHOW COLUMNS FROM `cs310db`.`country`: OK
+[9, 20:27:59] PREPARE stmt FROM 'INSERT INTO `cs310db`.`country` (`c_id`,`c_name`) VALUES(?,?)': Executing 
+[9, 20:27:59] PREPARE stmt FROM 'INSERT INTO `cs310db`.`country` (`c_id`,`c_name`) VALUES(?,?)': OK
+[10, 20:28:00] DEALLOCATE PREPARE stmt: Executing 
+[10, 20:28:00] DEALLOCATE PREPARE stmt: OK
+[11, 20:30:19] SELECT * FROM cs310db.country
+LIMIT 0, 1000
+: Running...
+[11, 20:30:19] SELECT * FROM cs310db.country
+LIMIT 0, 1000
+: Fetching...
+[11, 20:30:19] SELECT * FROM cs310db.country
+LIMIT 0, 1000
+: 192 row(s) returned
+[12, 20:44:23] CREATE TABLE Healthcare_Spending(
+c_id CHAR(3),
+date DATE,
+percent_gdp DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[12, 20:44:23] CREATE TABLE Healthcare_Spending(
+c_id CHAR(3),
+date DATE,
+percent_gdp DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[13, 20:44:59] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[13, 20:44:59] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[14, 20:44:59] SHOW DATABASES: Executing 
+[14, 20:44:59] SHOW DATABASES: OK
+[15, 20:45:04] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[15, 20:45:04] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[16, 20:45:04] SHOW COLUMNS FROM `cs310db`.`healthcare_spending`: Executing 
+[16, 20:45:04] SHOW COLUMNS FROM `cs310db`.`healthcare_spending`: OK
+[17, 20:45:40] PREPARE stmt FROM 'INSERT INTO `cs310db`.`healthcare_spending` (`c_id`,`date`,`percent_gdp`) VALUES(?,?,?)': Executing 
+[17, 20:45:40] PREPARE stmt FROM 'INSERT INTO `cs310db`.`healthcare_spending` (`c_id`,`date`,`percent_gdp`) VALUES(?,?,?)': OK
+[18, 20:45:48] DEALLOCATE PREPARE stmt: Executing 
+[18, 20:45:48] DEALLOCATE PREPARE stmt: OK
+[19, 20:46:15] SELECT * FROM cs310db.healthcare_spending
+LIMIT 0, 1000
+: Running...
+[19, 20:46:15] SELECT * FROM cs310db.healthcare_spending
+LIMIT 0, 1000
+: Fetching...
+[19, 20:46:15] SELECT * FROM cs310db.healthcare_spending
+LIMIT 0, 1000
+: 0 row(s) returned
+[20, 20:47:15] DROP TABLE healthcare_spending: Running...
+[20, 20:47:15] DROP TABLE healthcare_spending: 0 row(s) affected
+[21, 20:47:30] CREATE TABLE Healthcare_Spending(
+c_id CHAR(3),
+date INTEGER,
+percent_gdp DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[21, 20:47:30] CREATE TABLE Healthcare_Spending(
+c_id CHAR(3),
+date INTEGER,
+percent_gdp DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[22, 20:47:40] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[22, 20:47:40] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[23, 20:47:40] SHOW DATABASES: Executing 
+[23, 20:47:40] SHOW DATABASES: OK
+[24, 20:47:46] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[24, 20:47:46] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[25, 20:47:46] SHOW COLUMNS FROM `cs310db`.`healthcare_spending`: Executing 
+[25, 20:47:46] SHOW COLUMNS FROM `cs310db`.`healthcare_spending`: OK
+[26, 20:47:51] PREPARE stmt FROM 'INSERT INTO `cs310db`.`healthcare_spending` (`c_id`,`date`,`percent_gdp`) VALUES(?,?,?)': Executing 
+[26, 20:47:51] PREPARE stmt FROM 'INSERT INTO `cs310db`.`healthcare_spending` (`c_id`,`date`,`percent_gdp`) VALUES(?,?,?)': OK
+[27, 20:48:13] DEALLOCATE PREPARE stmt: Executing 
+[27, 20:48:13] DEALLOCATE PREPARE stmt: OK
+[28, 20:48:27] SELECT * FROM cs310db.healthcare_spending
+LIMIT 0, 1000
+: Running...
+[28, 20:48:27] SELECT * FROM cs310db.healthcare_spending
+LIMIT 0, 1000
+: Fetching...
+[28, 20:48:27] SELECT * FROM cs310db.healthcare_spending
+LIMIT 0, 1000
+: 1000 row(s) returned
+[29, 20:53:50] CREATE TABLE Cancer_Death_Reported(
+c_id CHAR(3),
+date INTEGER,
+lungc_amount INTEGER,
+liporalc_amount INTEGER,
+liverc_amount INTEGER,
+total_percent DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[29, 20:53:50] CREATE TABLE Cancer_Death_Reported(
+c_id CHAR(3),
+date INTEGER,
+lungc_amount INTEGER,
+liporalc_amount INTEGER,
+liverc_amount INTEGER,
+total_percent DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[30, 20:54:13] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[30, 20:54:13] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[31, 20:54:13] SHOW DATABASES: Executing 
+[31, 20:54:13] SHOW DATABASES: OK
+[32, 20:54:17] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[32, 20:54:17] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[33, 20:54:17] SHOW COLUMNS FROM `cs310db`.`cancer_death_reported`: Executing 
+[33, 20:54:17] SHOW COLUMNS FROM `cs310db`.`cancer_death_reported`: OK
+[34, 20:54:30] PREPARE stmt FROM 'INSERT INTO `cs310db`.`cancer_death_reported` (`c_id`,`date`,`liverc_amount`,`liporalc_amount`,`lungc_amount`,`total_percent`) VALUES(?,?,?,?,?,?)': Executing 
+[34, 20:54:30] PREPARE stmt FROM 'INSERT INTO `cs310db`.`cancer_death_reported` (`c_id`,`date`,`liverc_amount`,`liporalc_amount`,`lungc_amount`,`total_percent`) VALUES(?,?,?,?,?,?)': OK
+[35, 20:55:15] DEALLOCATE PREPARE stmt: Executing 
+[35, 20:55:15] DEALLOCATE PREPARE stmt: OK
+[36, 21:15:00] DROP TABLE `cs310db`.`country`: Running...
+[36, 21:15:00] DROP TABLE `cs310db`.`country`: Error Code: 3730. Cannot drop table 'country' referenced by a foreign key constraint 'healthcare_spending_ibfk_1' on table 'healthcare_spending'.
+[37, 21:15:06] DROP TABLE `cs310db`.`healthcare_spending`: Running...
+[37, 21:15:06] DROP TABLE `cs310db`.`healthcare_spending`: 0 row(s) affected
+[38, 21:15:20] DROP TABLE `cs310db`.`cancer_death_reported`: Running...
+[38, 21:15:20] DROP TABLE `cs310db`.`cancer_death_reported`: 0 row(s) affected
+[39, 21:15:39] DROP TABLE `cs310db`.`country`: Running...
+[39, 21:15:39] DROP TABLE `cs310db`.`country`: 0 row(s) affected
+[40, 21:15:50] CREATE TABLE Country(
+c_id CHAR(3),
+c_name CHAR(50),
+PRIMARY KEY (c_id)
+): Running...
+[40, 21:15:50] CREATE TABLE Country(
+c_id CHAR(3),
+c_name CHAR(50),
+PRIMARY KEY (c_id)
+): 0 row(s) affected
+[41, 21:15:50] CREATE TABLE Healthcare_Spending(
+c_id CHAR(3),
+date INTEGER,
+percent_gdp DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[41, 21:15:50] CREATE TABLE Healthcare_Spending(
+c_id CHAR(3),
+date INTEGER,
+percent_gdp DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[42, 21:15:50] CREATE TABLE Cancer_Death_Reported(
+c_id CHAR(3),
+date INTEGER,
+lungc_amount INTEGER,
+liporalc_amount INTEGER,
+liverc_amount INTEGER,
+total_percent DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[42, 21:15:50] CREATE TABLE Cancer_Death_Reported(
+c_id CHAR(3),
+date INTEGER,
+lungc_amount INTEGER,
+liporalc_amount INTEGER,
+liverc_amount INTEGER,
+total_percent DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[43, 21:16:15] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[43, 21:16:15] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[44, 21:16:15] SHOW DATABASES: Executing 
+[44, 21:16:15] SHOW DATABASES: OK
+[45, 21:16:19] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[45, 21:16:19] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[46, 21:16:19] SHOW COLUMNS FROM `cs310db`.`country`: Executing 
+[46, 21:16:19] SHOW COLUMNS FROM `cs310db`.`country`: OK
+[47, 21:16:23] PREPARE stmt FROM 'INSERT INTO `cs310db`.`country` (`c_id`,`c_name`) VALUES(?,?)': Executing 
+[47, 21:16:23] PREPARE stmt FROM 'INSERT INTO `cs310db`.`country` (`c_id`,`c_name`) VALUES(?,?)': OK
+[48, 21:16:23] DEALLOCATE PREPARE stmt: Executing 
+[48, 21:16:23] DEALLOCATE PREPARE stmt: OK
+[49, 21:17:21] SELECT * FROM cs310db.country
+LIMIT 0, 1000
+: Running...
+[49, 21:17:21] SELECT * FROM cs310db.country
+LIMIT 0, 1000
+: Fetching...
+[49, 21:17:21] SELECT * FROM cs310db.country
+LIMIT 0, 1000
+: 0 row(s) returned
+[50, 21:17:28] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[50, 21:17:28] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[51, 21:17:28] SHOW DATABASES: Executing 
+[51, 21:17:28] SHOW DATABASES: OK
+[52, 21:17:33] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[52, 21:17:33] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[53, 21:17:33] SHOW COLUMNS FROM `cs310db`.`country`: Executing 
+[53, 21:17:33] SHOW COLUMNS FROM `cs310db`.`country`: OK
+[54, 21:17:37] PREPARE stmt FROM 'INSERT INTO `cs310db`.`country` (`c_id`,`c_name`) VALUES(?,?)': Executing 
+[54, 21:17:37] PREPARE stmt FROM 'INSERT INTO `cs310db`.`country` (`c_id`,`c_name`) VALUES(?,?)': OK
+[55, 21:17:39] DEALLOCATE PREPARE stmt: Executing 
+[55, 21:17:39] DEALLOCATE PREPARE stmt: OK
+[56, 21:18:13] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[56, 21:18:13] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[57, 21:18:13] SHOW DATABASES: Executing 
+[57, 21:18:13] SHOW DATABASES: OK
+[58, 21:18:19] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[58, 21:18:19] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[59, 21:18:19] SHOW COLUMNS FROM `cs310db`.`healthcare_spending`: Executing 
+[59, 21:18:19] SHOW COLUMNS FROM `cs310db`.`healthcare_spending`: OK
+[60, 21:18:27] PREPARE stmt FROM 'INSERT INTO `cs310db`.`healthcare_spending` (`c_id`,`date`,`percent_gdp`) VALUES(?,?,?)': Executing 
+[60, 21:18:27] PREPARE stmt FROM 'INSERT INTO `cs310db`.`healthcare_spending` (`c_id`,`date`,`percent_gdp`) VALUES(?,?,?)': OK
+[61, 21:19:02] DEALLOCATE PREPARE stmt: Executing 
+[61, 21:19:02] DEALLOCATE PREPARE stmt: OK
+[62, 21:19:43] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[62, 21:19:43] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[63, 21:19:43] SHOW DATABASES: Executing 
+[63, 21:19:43] SHOW DATABASES: OK
+[64, 21:19:48] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[64, 21:19:48] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[65, 21:19:48] SHOW COLUMNS FROM `cs310db`.`cancer_death_reported`: Executing 
+[65, 21:19:48] SHOW COLUMNS FROM `cs310db`.`cancer_death_reported`: OK
+[66, 21:19:56] PREPARE stmt FROM 'INSERT INTO `cs310db`.`cancer_death_reported` (`c_id`,`date`,`liverc_amount`,`liporalc_amount`,`lungc_amount`,`total_percent`) VALUES(?,?,?,?,?,?)': Executing 
+[66, 21:19:56] PREPARE stmt FROM 'INSERT INTO `cs310db`.`cancer_death_reported` (`c_id`,`date`,`liverc_amount`,`liporalc_amount`,`lungc_amount`,`total_percent`) VALUES(?,?,?,?,?,?)': OK
+[67, 21:21:04] DEALLOCATE PREPARE stmt: Executing 
+[67, 21:21:04] DEALLOCATE PREPARE stmt: OK
+[68, 21:21:37] SELECT * FROM cs310db.cancer_death_reported
+LIMIT 0, 1000
+: Running...
+[68, 21:21:37] SELECT * FROM cs310db.cancer_death_reported
+LIMIT 0, 1000
+: Fetching...
+[68, 21:21:37] SELECT * FROM cs310db.cancer_death_reported
+LIMIT 0, 1000
+: 1000 row(s) returned
+[69, 21:23:00] CREATE TABLE Housed_Population(
+c_id CHAR(3),
+date INTEGER,
+amount_urban INTEGER,
+amount_rural INTEGER,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[69, 21:23:00] CREATE TABLE Housed_Population(
+c_id CHAR(3),
+date INTEGER,
+amount_urban INTEGER,
+amount_rural INTEGER,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[70, 21:23:15] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[70, 21:23:15] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[71, 21:23:15] SHOW DATABASES: Executing 
+[71, 21:23:15] SHOW DATABASES: OK
+[72, 21:23:25] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[72, 21:23:25] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[73, 21:23:25] SHOW COLUMNS FROM `cs310db`.`housed_population`: Executing 
+[73, 21:23:25] SHOW COLUMNS FROM `cs310db`.`housed_population`: OK
+[74, 21:23:33] PREPARE stmt FROM 'INSERT INTO `cs310db`.`housed_population` (`c_id`,`date`,`amount_urban`,`amount_rural`) VALUES(?,?,?,?)': Executing 
+[74, 21:23:33] PREPARE stmt FROM 'INSERT INTO `cs310db`.`housed_population` (`c_id`,`date`,`amount_urban`,`amount_rural`) VALUES(?,?,?,?)': OK
+[75, 21:25:44] DEALLOCATE PREPARE stmt: Executing 
+[75, 21:25:44] DEALLOCATE PREPARE stmt: OK
+[76, 21:28:22] SELECT * FROM cs310db.housed_population
+LIMIT 0, 1000
+: Running...
+[76, 21:28:22] SELECT * FROM cs310db.housed_population
+LIMIT 0, 1000
+: Fetching...
+[76, 21:28:22] SELECT * FROM cs310db.housed_population
+LIMIT 0, 1000
+: 1000 row(s) returned
+[77, 21:28:43] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[77, 21:28:43] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[78, 21:28:43] SHOW DATABASES: Executing 
+[78, 21:28:43] SHOW DATABASES: OK
+[79, 21:29:01] CREATE TABLE Air_Pol_Deaths_Reported(
+c_id CHAR(3),
+date INTEGER,
+death_amount INTEGER,
+death_percentage DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[79, 21:29:01] CREATE TABLE Air_Pol_Deaths_Reported(
+c_id CHAR(3),
+date INTEGER,
+death_amount INTEGER,
+death_percentage DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[80, 21:29:13] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[80, 21:29:13] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[81, 21:29:13] SHOW DATABASES: Executing 
+[81, 21:29:13] SHOW DATABASES: OK
+[82, 21:29:18] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[82, 21:29:18] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[83, 21:29:18] SHOW COLUMNS FROM `cs310db`.`air_pol_deaths_reported`: Executing 
+[83, 21:29:18] SHOW COLUMNS FROM `cs310db`.`air_pol_deaths_reported`: OK
+[84, 21:29:37] PREPARE stmt FROM 'INSERT INTO `cs310db`.`air_pol_deaths_reported` (`c_id`,`date`,`death_amount`,`death_percentage`) VALUES(?,?,?,?)': Executing 
+[84, 21:29:37] PREPARE stmt FROM 'INSERT INTO `cs310db`.`air_pol_deaths_reported` (`c_id`,`date`,`death_amount`,`death_percentage`) VALUES(?,?,?,?)': OK
+[85, 21:30:53] DEALLOCATE PREPARE stmt: Executing 
+[85, 21:30:53] DEALLOCATE PREPARE stmt: OK
+[86, 21:34:13] CREATE TABLE Mental_Disorder(
+c_id CHAR(3),
+date INTEGER,
+percent_anxiety DOUBLE,
+percent_druguse DOUBLE,
+percent_alcohol DOUBLE,
+percent_depression DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE,
+FOREIGN KEY (date) REFERENCES Housed_Population(date) ON DELETE CASCADE
+): Running...
+[86, 21:34:13] CREATE TABLE Mental_Disorder(
+c_id CHAR(3),
+date INTEGER,
+percent_anxiety DOUBLE,
+percent_druguse DOUBLE,
+percent_alcohol DOUBLE,
+percent_depression DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE,
+FOREIGN KEY (date) REFERENCES Housed_Population(date) ON DELETE CASCADE
+): Error Code: 1822. Failed to add the foreign key constraint. Missing index for constraint 'mental_disorder_ibfk_2' in the referenced table 'housed_population'
+[87, 21:39:57] CREATE TABLE Mental_Disorder(
+c_id CHAR(3),
+date INTEGER,
+percent_anxiety DOUBLE,
+percent_druguse DOUBLE,
+percent_alcohol DOUBLE,
+percent_depression DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id,date) REFERENCES Population(c_id,date) ON DELETE CASCADE
+): Running...
+[87, 21:39:57] CREATE TABLE Mental_Disorder(
+c_id CHAR(3),
+date INTEGER,
+percent_anxiety DOUBLE,
+percent_druguse DOUBLE,
+percent_alcohol DOUBLE,
+percent_depression DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id,date) REFERENCES Population(c_id,date) ON DELETE CASCADE
+): Error Code: 1824. Failed to open the referenced table 'population'
+[88, 21:40:13] CREATE TABLE Mental_Disorder(
+c_id CHAR(3),
+date INTEGER,
+percent_anxiety DOUBLE,
+percent_druguse DOUBLE,
+percent_alcohol DOUBLE,
+percent_depression DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id,date) REFERENCES Housed_Population(c_id,date) ON DELETE CASCADE
+): Running...
+[88, 21:40:13] CREATE TABLE Mental_Disorder(
+c_id CHAR(3),
+date INTEGER,
+percent_anxiety DOUBLE,
+percent_druguse DOUBLE,
+percent_alcohol DOUBLE,
+percent_depression DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id,date) REFERENCES Housed_Population(c_id,date) ON DELETE CASCADE
+): 0 row(s) affected
+[89, 21:40:24] SELECT * FROM cs310db.mental_disorder
+LIMIT 0, 1000
+: Running...
+[89, 21:40:24] SELECT * FROM cs310db.mental_disorder
+LIMIT 0, 1000
+: Fetching...
+[89, 21:40:24] SELECT * FROM cs310db.mental_disorder
+LIMIT 0, 1000
+: 0 row(s) returned
+[90, 21:40:43] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[90, 21:40:43] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[91, 21:40:43] SHOW DATABASES: Executing 
+[91, 21:40:43] SHOW DATABASES: OK
+[92, 21:40:50] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[92, 21:40:50] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[93, 21:40:50] SHOW COLUMNS FROM `cs310db`.`mental_disorder`: Executing 
+[93, 21:40:50] SHOW COLUMNS FROM `cs310db`.`mental_disorder`: OK
+[94, 21:40:59] PREPARE stmt FROM 'INSERT INTO `cs310db`.`mental_disorder` (`c_id`,`date`,`percent_anxiety`,`percent_druguse`,`percent_depression`,`percent_alcohol`) VALUES(?,?,?,?,?,?)': Executing 
+[94, 21:40:59] PREPARE stmt FROM 'INSERT INTO `cs310db`.`mental_disorder` (`c_id`,`date`,`percent_anxiety`,`percent_druguse`,`percent_depression`,`percent_alcohol`) VALUES(?,?,?,?,?,?)': OK
+[95, 21:42:26] DEALLOCATE PREPARE stmt: Executing 
+[95, 21:42:26] DEALLOCATE PREPARE stmt: OK
