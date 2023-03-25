@@ -1,0 +1,168 @@
+[1, 01:20:25] CREATE TABLE Country(
+c_id CHAR(3),
+c_name CHAR(50),
+PRIMARY KEY (c_id)
+): Running...
+[1, 01:20:25] CREATE TABLE Country(
+c_id CHAR(3),
+c_name CHAR(50),
+PRIMARY KEY (c_id)
+): 0 row(s) affected
+[2, 01:20:25] CREATE TABLE Healthcare_Spending(
+c_id CHAR(3),
+date INTEGER,
+percent_gdp DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[2, 01:20:25] CREATE TABLE Healthcare_Spending(
+c_id CHAR(3),
+date INTEGER,
+percent_gdp DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[3, 01:20:25] CREATE TABLE Cancer_Death_Reported(
+c_id CHAR(3),
+date INTEGER,
+lungc_amount INTEGER,
+liporalc_amount INTEGER,
+liverc_amount INTEGER,
+total_percent DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[3, 01:20:25] CREATE TABLE Cancer_Death_Reported(
+c_id CHAR(3),
+date INTEGER,
+lungc_amount INTEGER,
+liporalc_amount INTEGER,
+liverc_amount INTEGER,
+total_percent DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[4, 01:20:25] CREATE TABLE Housed_Population(
+c_id CHAR(3),
+date INTEGER,
+amount_urban INTEGER,
+amount_rural INTEGER,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[4, 01:20:25] CREATE TABLE Housed_Population(
+c_id CHAR(3),
+date INTEGER,
+amount_urban INTEGER,
+amount_rural INTEGER,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[5, 01:20:25] CREATE TABLE Air_Pol_Deaths_Reported(
+c_id CHAR(3),
+date INTEGER,
+death_amount INTEGER,
+death_percentage DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): Running...
+[5, 01:20:25] CREATE TABLE Air_Pol_Deaths_Reported(
+c_id CHAR(3),
+date INTEGER,
+death_amount INTEGER,
+death_percentage DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id) REFERENCES Country(c_id) ON DELETE CASCADE
+): 0 row(s) affected
+[6, 01:20:25] CREATE TABLE Mental_Disorder(
+c_id CHAR(3),
+date INTEGER,
+percent_anxiety DOUBLE,
+percent_druguse DOUBLE,
+percent_alcohol DOUBLE,
+percent_depression DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id,date) REFERENCES Housed_Population(c_id,date) ON DELETE CASCADE
+): Running...
+[6, 01:20:25] CREATE TABLE Mental_Disorder(
+c_id CHAR(3),
+date INTEGER,
+percent_anxiety DOUBLE,
+percent_druguse DOUBLE,
+percent_alcohol DOUBLE,
+percent_depression DOUBLE,
+PRIMARY KEY (c_id, date),
+FOREIGN KEY (c_id,date) REFERENCES Housed_Population(c_id,date) ON DELETE CASCADE
+): 0 row(s) affected
+[7, 01:21:15] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[7, 01:21:15] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[8, 01:21:15] SHOW DATABASES: Executing 
+[8, 01:21:15] SHOW DATABASES: OK
+[9, 01:21:19] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[9, 01:21:19] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[10, 01:21:19] SHOW COLUMNS FROM `cs310db`.`country`: Executing 
+[10, 01:21:19] SHOW COLUMNS FROM `cs310db`.`country`: OK
+[11, 01:21:23] PREPARE stmt FROM 'INSERT INTO `cs310db`.`country` (`c_id`,`c_name`) VALUES(?,?)': Executing 
+[11, 01:21:23] PREPARE stmt FROM 'INSERT INTO `cs310db`.`country` (`c_id`,`c_name`) VALUES(?,?)': OK
+[12, 01:21:24] DEALLOCATE PREPARE stmt: Executing 
+[12, 01:21:24] DEALLOCATE PREPARE stmt: OK
+[13, 01:21:49] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[13, 01:21:49] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[14, 01:21:49] SHOW DATABASES: Executing 
+[14, 01:21:49] SHOW DATABASES: OK
+[15, 01:21:54] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[15, 01:21:54] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[16, 01:21:54] SHOW COLUMNS FROM `cs310db`.`healthcare_spending`: Executing 
+[16, 01:21:54] SHOW COLUMNS FROM `cs310db`.`healthcare_spending`: OK
+[17, 01:22:00] PREPARE stmt FROM 'INSERT INTO `cs310db`.`healthcare_spending` (`c_id`,`date`,`percent_gdp`) VALUES(?,?,?)': Executing 
+[17, 01:22:00] PREPARE stmt FROM 'INSERT INTO `cs310db`.`healthcare_spending` (`c_id`,`date`,`percent_gdp`) VALUES(?,?,?)': OK
+[18, 01:22:16] DEALLOCATE PREPARE stmt: Executing 
+[18, 01:22:16] DEALLOCATE PREPARE stmt: OK
+[19, 01:22:56] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[19, 01:22:56] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[20, 01:22:56] SHOW DATABASES: Executing 
+[20, 01:22:56] SHOW DATABASES: OK
+[21, 01:23:00] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[21, 01:23:00] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[22, 01:23:00] SHOW COLUMNS FROM `cs310db`.`air_pol_deaths_reported`: Executing 
+[22, 01:23:00] SHOW COLUMNS FROM `cs310db`.`air_pol_deaths_reported`: OK
+[23, 01:23:07] PREPARE stmt FROM 'INSERT INTO `cs310db`.`air_pol_deaths_reported` (`c_id`,`date`,`death_amount`,`death_percentage`) VALUES(?,?,?,?)': Executing 
+[23, 01:23:07] PREPARE stmt FROM 'INSERT INTO `cs310db`.`air_pol_deaths_reported` (`c_id`,`date`,`death_amount`,`death_percentage`) VALUES(?,?,?,?)': OK
+[24, 01:23:39] DEALLOCATE PREPARE stmt: Executing 
+[24, 01:23:39] DEALLOCATE PREPARE stmt: OK
+[25, 01:24:04] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[25, 01:24:04] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[26, 01:24:04] SHOW DATABASES: Executing 
+[26, 01:24:04] SHOW DATABASES: OK
+[27, 01:24:08] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[27, 01:24:08] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[28, 01:24:08] SHOW COLUMNS FROM `cs310db`.`cancer_death_reported`: Executing 
+[28, 01:24:08] SHOW COLUMNS FROM `cs310db`.`cancer_death_reported`: OK
+[29, 01:24:14] PREPARE stmt FROM 'INSERT INTO `cs310db`.`cancer_death_reported` (`c_id`,`date`,`liverc_amount`,`liporalc_amount`,`lungc_amount`,`total_percent`) VALUES(?,?,?,?,?,?)': Executing 
+[29, 01:24:14] PREPARE stmt FROM 'INSERT INTO `cs310db`.`cancer_death_reported` (`c_id`,`date`,`liverc_amount`,`liporalc_amount`,`lungc_amount`,`total_percent`) VALUES(?,?,?,?,?,?)': OK
+[30, 01:24:48] DEALLOCATE PREPARE stmt: Executing 
+[30, 01:24:48] DEALLOCATE PREPARE stmt: OK
+[31, 01:25:01] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[31, 01:25:01] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[32, 01:25:01] SHOW DATABASES: Executing 
+[32, 01:25:01] SHOW DATABASES: OK
+[33, 01:25:06] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[33, 01:25:06] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[34, 01:25:06] SHOW COLUMNS FROM `cs310db`.`housed_population`: Executing 
+[34, 01:25:06] SHOW COLUMNS FROM `cs310db`.`housed_population`: OK
+[35, 01:25:10] PREPARE stmt FROM 'INSERT INTO `cs310db`.`housed_population` (`c_id`,`date`,`amount_urban`,`amount_rural`) VALUES(?,?,?,?)': Executing 
+[35, 01:25:10] PREPARE stmt FROM 'INSERT INTO `cs310db`.`housed_population` (`c_id`,`date`,`amount_urban`,`amount_rural`) VALUES(?,?,?,?)': OK
+[36, 01:26:21] DEALLOCATE PREPARE stmt: Executing 
+[36, 01:26:21] DEALLOCATE PREPARE stmt: OK
+[37, 01:27:01] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[37, 01:27:01] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[38, 01:27:01] SHOW DATABASES: Executing 
+[38, 01:27:01] SHOW DATABASES: OK
+[39, 01:27:07] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': Executing 
+[39, 01:27:07] SHOW SESSION VARIABLES LIKE 'lower_case_table_names': OK
+[40, 01:27:07] SHOW COLUMNS FROM `cs310db`.`mental_disorder`: Executing 
+[40, 01:27:07] SHOW COLUMNS FROM `cs310db`.`mental_disorder`: OK
+[41, 01:27:15] PREPARE stmt FROM 'INSERT INTO `cs310db`.`mental_disorder` (`c_id`,`date`,`percent_anxiety`,`percent_druguse`,`percent_depression`,`percent_alcohol`) VALUES(?,?,?,?,?,?)': Executing 
+[41, 01:27:15] PREPARE stmt FROM 'INSERT INTO `cs310db`.`mental_disorder` (`c_id`,`date`,`percent_anxiety`,`percent_druguse`,`percent_depression`,`percent_alcohol`) VALUES(?,?,?,?,?,?)': OK
+[42, 01:27:42] DEALLOCATE PREPARE stmt: Executing 
+[42, 01:27:42] DEALLOCATE PREPARE stmt: OK
