@@ -1,0 +1,324 @@
+[1, 12:13:00] CREATE VIEW high_healthcare_expense_countries (c_id, date, percent_gdp) AS
+SELECT * 
+FROM healthcare_spending
+WHERE percent_gdp >= 5: Running...
+[1, 12:13:00] CREATE VIEW high_healthcare_expense_countries (c_id, date, percent_gdp) AS
+SELECT * 
+FROM healthcare_spending
+WHERE percent_gdp >= 5: 0 row(s) affected
+[2, 12:13:02] CREATE VIEW high_pollution_deaths (c_id, date, death_percentage) AS
+SELECT c_id, date, death_percentage
+FROM air_pol_deaths_reported
+WHERE death_percentage > 20: Running...
+[2, 12:13:02] CREATE VIEW high_pollution_deaths (c_id, date, death_percentage) AS
+SELECT c_id, date, death_percentage
+FROM air_pol_deaths_reported
+WHERE death_percentage > 20: 0 row(s) affected
+[3, 12:13:05] CREATE VIEW high_lung_cancer AS
+SELECT c_id, date, (lungc_amount / (lungc_amount + liporalc_amount + liverc_amount)) * total_percent AS lungc_percent
+FROM cancer_death_reported
+WHERE (lungc_amount / (lungc_amount + liporalc_amount + liverc_amount)) * total_percent > 0.2: Running...
+[3, 12:13:05] CREATE VIEW high_lung_cancer AS
+SELECT c_id, date, (lungc_amount / (lungc_amount + liporalc_amount + liverc_amount)) * total_percent AS lungc_percent
+FROM cancer_death_reported
+WHERE (lungc_amount / (lungc_amount + liporalc_amount + liverc_amount)) * total_percent > 0.2: 0 row(s) affected
+[4, 12:13:08] CREATE VIEW high_depression_percent (c_id, date, percent_depression) AS
+SELECT c_id, date, percent_depression
+FROM mental_disorder
+WHERE percent_depression > 5: Running...
+[4, 12:13:08] CREATE VIEW high_depression_percent (c_id, date, percent_depression) AS
+SELECT c_id, date, percent_depression
+FROM mental_disorder
+WHERE percent_depression > 5: 0 row(s) affected
+[5, 12:13:10] CREATE VIEW high_urban_rate_countries AS 
+SELECT c_id, date, amount_urban / (amount_urban + amount_rural) AS percent_urban
+FROM housed_population
+WHERE amount_urban / (amount_urban + amount_rural) > 0.7: Running...
+[5, 12:13:10] CREATE VIEW high_urban_rate_countries AS 
+SELECT c_id, date, amount_urban / (amount_urban + amount_rural) AS percent_urban
+FROM housed_population
+WHERE amount_urban / (amount_urban + amount_rural) > 0.7: 0 row(s) affected
+[6, 12:13:40] SELECT c_id FROM high_urban_rate_countries
+INTERSECT 
+SELECT c_id FROM high_depression_percent: Running...
+[6, 12:13:40] SELECT c_id FROM high_urban_rate_countries
+INTERSECT 
+SELECT c_id FROM high_depression_percent: Fetching...
+[6, 12:13:40] SELECT c_id FROM high_urban_rate_countries
+INTERSECT 
+SELECT c_id FROM high_depression_percent: 13 row(s) returned
+[7, 12:14:06] SELECT DISTINCT high_urban_rate_countries.c_id FROM high_urban_rate_countries 
+INNER JOIN high_depression_percent  
+ON high_urban_rate_countries.c_id = high_depression_percent.c_id
+LIMIT 0, 1000
+: Running...
+[7, 12:14:06] SELECT DISTINCT high_urban_rate_countries.c_id FROM high_urban_rate_countries 
+INNER JOIN high_depression_percent  
+ON high_urban_rate_countries.c_id = high_depression_percent.c_id
+LIMIT 0, 1000
+: Fetching...
+[7, 12:14:06] SELECT DISTINCT high_urban_rate_countries.c_id FROM high_urban_rate_countries 
+INNER JOIN high_depression_percent  
+ON high_urban_rate_countries.c_id = high_depression_percent.c_id
+LIMIT 0, 1000
+: 13 row(s) returned
+[8, 12:14:08] SELECT c_id FROM high_urban_rate_countries
+EXCEPT
+SELECT c_id FROM high_depression_percent: Running...
+[8, 12:14:08] SELECT c_id FROM high_urban_rate_countries
+EXCEPT
+SELECT c_id FROM high_depression_percent: Fetching...
+[8, 12:14:09] SELECT c_id FROM high_urban_rate_countries
+EXCEPT
+SELECT c_id FROM high_depression_percent: 74 row(s) returned
+[9, 12:14:12] SELECT distinct high_urban_rate_countries.c_id FROM 
+high_urban_rate_countries LEFT OUTER JOIN high_depression_percent 
+ON high_urban_rate_countries.c_id = high_depression_percent.c_id
+WHERE high_depression_percent.c_id IS NULL
+LIMIT 0, 1000
+: Running...
+[9, 12:14:12] SELECT distinct high_urban_rate_countries.c_id FROM 
+high_urban_rate_countries LEFT OUTER JOIN high_depression_percent 
+ON high_urban_rate_countries.c_id = high_depression_percent.c_id
+WHERE high_depression_percent.c_id IS NULL
+LIMIT 0, 1000
+: Fetching...
+[9, 12:14:12] SELECT distinct high_urban_rate_countries.c_id FROM 
+high_urban_rate_countries LEFT OUTER JOIN high_depression_percent 
+ON high_urban_rate_countries.c_id = high_depression_percent.c_id
+WHERE high_depression_percent.c_id IS NULL
+LIMIT 0, 1000
+: 74 row(s) returned
+[10, 12:14:29] SELECT C.c_id, C.date, C.lungc_amount FROM cancer_death_reported C WHERE C.c_id IN
+(SELECT A.c_id FROM air_pol_deaths_reported A WHERE A.death_percentage > 23)
+LIMIT 0, 1000
+: Running...
+[10, 12:14:29] SELECT C.c_id, C.date, C.lungc_amount FROM cancer_death_reported C WHERE C.c_id IN
+(SELECT A.c_id FROM air_pol_deaths_reported A WHERE A.death_percentage > 23)
+LIMIT 0, 1000
+: Fetching...
+[10, 12:14:29] SELECT C.c_id, C.date, C.lungc_amount FROM cancer_death_reported C WHERE C.c_id IN
+(SELECT A.c_id FROM air_pol_deaths_reported A WHERE A.death_percentage > 23)
+LIMIT 0, 1000
+: 120 row(s) returned
+[11, 12:14:33] SELECT C.c_id, C.date, C.lungc_amount FROM cancer_death_reported C WHERE exists
+(SELECT A.c_id FROM air_pol_deaths_reported A WHERE A.death_percentage > 23 AND C.c_id=A.c_id)
+LIMIT 0, 1000
+: Running...
+[11, 12:14:33] SELECT C.c_id, C.date, C.lungc_amount FROM cancer_death_reported C WHERE exists
+(SELECT A.c_id FROM air_pol_deaths_reported A WHERE A.death_percentage > 23 AND C.c_id=A.c_id)
+LIMIT 0, 1000
+: Fetching...
+[11, 12:14:33] SELECT C.c_id, C.date, C.lungc_amount FROM cancer_death_reported C WHERE exists
+(SELECT A.c_id FROM air_pol_deaths_reported A WHERE A.death_percentage > 23 AND C.c_id=A.c_id)
+LIMIT 0, 1000
+: 120 row(s) returned
+[12, 12:14:43] SELECT H.c_id, AVG(H.percent_gdp)
+FROM healthcare_spending H
+WHERE H.date >= 2010
+GROUP BY H.c_id
+HAVING 0.1 < (SELECT MIN(C.total_percent)
+FROM cancer_death_reported C
+WHERE H.c_id=C.c_id)
+LIMIT 0, 1000
+: Running...
+[12, 12:14:43] SELECT H.c_id, AVG(H.percent_gdp)
+FROM healthcare_spending H
+WHERE H.date >= 2010
+GROUP BY H.c_id
+HAVING 0.1 < (SELECT MIN(C.total_percent)
+FROM cancer_death_reported C
+WHERE H.c_id=C.c_id)
+LIMIT 0, 1000
+: Fetching...
+[12, 12:14:43] SELECT H.c_id, AVG(H.percent_gdp)
+FROM healthcare_spending H
+WHERE H.date >= 2010
+GROUP BY H.c_id
+HAVING 0.1 < (SELECT MIN(C.total_percent)
+FROM cancer_death_reported C
+WHERE H.c_id=C.c_id)
+LIMIT 0, 1000
+: 140 row(s) returned
+[13, 12:14:47] SELECT A.c_id, MAX(A.death_percentage)
+FROM air_pol_deaths_reported A
+WHERE A.date >= 2000
+GROUP BY A.c_id
+HAVING 0.5 < (SELECT AVG(H.amount_urban/(H.amount_urban + H.amount_rural)) #urban > rural
+FROM housed_population H
+WHERE A.c_id=H.c_id)
+LIMIT 0, 1000
+: Running...
+[13, 12:14:47] SELECT A.c_id, MAX(A.death_percentage)
+FROM air_pol_deaths_reported A
+WHERE A.date >= 2000
+GROUP BY A.c_id
+HAVING 0.5 < (SELECT AVG(H.amount_urban/(H.amount_urban + H.amount_rural)) #urban > rural
+FROM housed_population H
+WHERE A.c_id=H.c_id)
+LIMIT 0, 1000
+: Fetching...
+[13, 12:14:47] SELECT A.c_id, MAX(A.death_percentage)
+FROM air_pol_deaths_reported A
+WHERE A.date >= 2000
+GROUP BY A.c_id
+HAVING 0.5 < (SELECT AVG(H.amount_urban/(H.amount_urban + H.amount_rural)) #urban > rural
+FROM housed_population H
+WHERE A.c_id=H.c_id)
+LIMIT 0, 1000
+: 99 row(s) returned
+[14, 12:14:51] SELECT A.c_id, MAX(A.death_percentage)
+FROM air_pol_deaths_reported A
+WHERE A.date >= 2000
+GROUP BY A.c_id
+HAVING 0.5 >= (SELECT AVG(H.amount_urban/(H.amount_urban + H.amount_rural)) #urban < rural
+FROM housed_population H
+WHERE A.c_id=H.c_id)
+LIMIT 0, 1000
+: Running...
+[14, 12:14:51] SELECT A.c_id, MAX(A.death_percentage)
+FROM air_pol_deaths_reported A
+WHERE A.date >= 2000
+GROUP BY A.c_id
+HAVING 0.5 >= (SELECT AVG(H.amount_urban/(H.amount_urban + H.amount_rural)) #urban < rural
+FROM housed_population H
+WHERE A.c_id=H.c_id)
+LIMIT 0, 1000
+: Fetching...
+[14, 12:14:51] SELECT A.c_id, MAX(A.death_percentage)
+FROM air_pol_deaths_reported A
+WHERE A.date >= 2000
+GROUP BY A.c_id
+HAVING 0.5 >= (SELECT AVG(H.amount_urban/(H.amount_urban + H.amount_rural)) #urban < rural
+FROM housed_population H
+WHERE A.c_id=H.c_id)
+LIMIT 0, 1000
+: 101 row(s) returned
+[16, 12:17:01] SELECT C.c_id, COUNT(*)
+FROM cancer_death_reported C
+WHERE C.total_percent > 0.1
+GROUP BY C.c_id
+HAVING 4 < (SELECT AVG(M.percent_anxiety)
+FROM mental_disorder M
+WHERE M.c_id = C.c_id)
+LIMIT 0, 1000
+: Running...
+[16, 12:17:01] SELECT C.c_id, COUNT(*)
+FROM cancer_death_reported C
+WHERE C.total_percent > 0.1
+GROUP BY C.c_id
+HAVING 4 < (SELECT AVG(M.percent_anxiety)
+FROM mental_disorder M
+WHERE M.c_id = C.c_id)
+LIMIT 0, 1000
+: Fetching...
+[16, 12:17:01] SELECT C.c_id, COUNT(*)
+FROM cancer_death_reported C
+WHERE C.total_percent > 0.1
+GROUP BY C.c_id
+HAVING 4 < (SELECT AVG(M.percent_anxiety)
+FROM mental_disorder M
+WHERE M.c_id = C.c_id)
+LIMIT 0, 1000
+: 98 row(s) returned
+[17, 12:18:31] SELECT C.date, SUM(C.lungc_amount)
+FROM cancer_death_reported C
+WHERE C.date >= 2000
+GROUP BY C.date
+HAVING 1 < (SELECT AVG(A.death_percentage) 
+FROM air_pol_deaths_reported A
+WHERE A.date=C.date)
+LIMIT 0, 1000
+: Running...
+[17, 12:18:31] SELECT C.date, SUM(C.lungc_amount)
+FROM cancer_death_reported C
+WHERE C.date >= 2000
+GROUP BY C.date
+HAVING 1 < (SELECT AVG(A.death_percentage) 
+FROM air_pol_deaths_reported A
+WHERE A.date=C.date)
+LIMIT 0, 1000
+: Fetching...
+[17, 12:18:31] SELECT C.date, SUM(C.lungc_amount)
+FROM cancer_death_reported C
+WHERE C.date >= 2000
+GROUP BY C.date
+HAVING 1 < (SELECT AVG(A.death_percentage) 
+FROM air_pol_deaths_reported A
+WHERE A.date=C.date)
+LIMIT 0, 1000
+: 20 row(s) returned
+[22, 12:21:58] ALTER TABLE Healthcare_Spending
+ADD CONSTRAINT ck_percent_gdp CHECK (percent_gdp >= 0 AND percent_gdp <= 100): Running...
+[22, 12:21:58] ALTER TABLE Healthcare_Spending
+ADD CONSTRAINT ck_percent_gdp CHECK (percent_gdp >= 0 AND percent_gdp <= 100): 3774 row(s) affected
+Records: 3774  Duplicates: 0  Warnings: 0
+[27, 12:24:13] INSERT INTO healthcare_spending VALUES ("USA",1337,101): Running...
+[27, 12:24:13] INSERT INTO healthcare_spending VALUES ("USA",1337,101): Error Code: 3819. Check constraint 'ck_percent_gdp' is violated.
+[28, 12:24:33] CREATE TRIGGER insert_into_healthcare BEFORE INSERT ON healthcare_spending
+FOR EACH ROW
+BEGIN
+	IF NEW.percent_gdp < 0 THEN
+		SET NEW.percent_gdp = 0;
+	ELSEIF NEW.percent_gdp > 100 THEN
+		SET NEW.percent_gdp = 100;
+	END IF;
+END: Running...
+[28, 12:24:33] CREATE TRIGGER insert_into_healthcare BEFORE INSERT ON healthcare_spending
+FOR EACH ROW
+BEGIN
+	IF NEW.percent_gdp < 0 THEN
+		SET NEW.percent_gdp = 0;
+	ELSEIF NEW.percent_gdp > 100 THEN
+		SET NEW.percent_gdp = 100;
+	END IF;
+END: 0 row(s) affected
+[29, 12:24:37] CREATE TRIGGER update_healthcare BEFORE UPDATE ON healthcare_spending
+FOR EACH ROW
+BEGIN
+	IF NEW.percent_gdp < 0 THEN
+		SET NEW.percent_gdp = 0;
+	ELSEIF NEW.percent_gdp > 100 THEN
+		SET NEW.percent_gdp = 100;
+	END IF;
+END: Running...
+[29, 12:24:37] CREATE TRIGGER update_healthcare BEFORE UPDATE ON healthcare_spending
+FOR EACH ROW
+BEGIN
+	IF NEW.percent_gdp < 0 THEN
+		SET NEW.percent_gdp = 0;
+	ELSEIF NEW.percent_gdp > 100 THEN
+		SET NEW.percent_gdp = 100;
+	END IF;
+END: 0 row(s) affected
+[30, 12:25:21] INSERT INTO healthcare_spending VALUES ("USA",1337,101): Running...
+[30, 12:25:21] INSERT INTO healthcare_spending VALUES ("USA",1337,101): 1 row(s) affected
+[31, 12:25:33] SELECT * FROM healthcare_spending WHERE date = 1337 OR date = 1338
+LIMIT 0, 1000
+: Running...
+[31, 12:25:33] SELECT * FROM healthcare_spending WHERE date = 1337 OR date = 1338
+LIMIT 0, 1000
+: Fetching...
+[31, 12:25:33] SELECT * FROM healthcare_spending WHERE date = 1337 OR date = 1338
+LIMIT 0, 1000
+: 1 row(s) returned
+[32, 12:26:57] SET SQL_SAFE_UPDATES = 0: Running...
+[32, 12:26:57] SET SQL_SAFE_UPDATES = 0: 0 row(s) affected
+[33, 12:26:57] DELETE FROM healthcare_spending WHERE date = 1337 OR date = 1338: Running...
+[33, 12:26:57] DELETE FROM healthcare_spending WHERE date = 1337 OR date = 1338: 1 row(s) affected
+[34, 12:26:57] SET SQL_SAFE_UPDATES = 1: Running...
+[34, 12:26:57] SET SQL_SAFE_UPDATES = 1: 0 row(s) affected
+[35, 12:27:19] CREATE PROCEDURE ReturnAveragePopulation (IN country CHAR(3))
+BEGIN
+	SELECT AVG(amount_urban + amount_rural) AS AveragePopulation FROM housed_population WHERE c_id = country;
+END: Running...
+[35, 12:27:19] CREATE PROCEDURE ReturnAveragePopulation (IN country CHAR(3))
+BEGIN
+	SELECT AVG(amount_urban + amount_rural) AS AveragePopulation FROM housed_population WHERE c_id = country;
+END: 0 row(s) affected
+[36, 12:27:26] CALL ReturnAveragePopulation("USA"): Running...
+[36, 12:27:26] CALL ReturnAveragePopulation("USA"): Fetching...
+[36, 12:27:26] CALL ReturnAveragePopulation("USA"): 1 row(s) returned
+[37, 12:27:54] CALL ReturnAveragePopulation("AFG"): Running...
+[37, 12:27:54] CALL ReturnAveragePopulation("AFG"): Fetching...
+[37, 12:27:54] CALL ReturnAveragePopulation("AFG"): 1 row(s) returned
